@@ -49,9 +49,9 @@ function setLedBrightness(rpio, value){
   }
   BRIGHTNESS = value;
 }
-var app = express();
-var httpServer = http.createServer(app);
-var io = require("socket.io")(httpServer);
+const app = express();
+const httpServer = http.createServer(app);
+const io = require('socket.io')(httpServer);
 
 app.use(bodyParser.json());
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -63,7 +63,7 @@ app.get('/', function(req,res){
   testLed(rpio);
 });
 
-io.sockets.on('connection', function(socket){
+io.on('connection', socket => {
 	console.log("connected!");
 	socket.emit("connected", { msg: "connected!"});
 	socket.on('forceDisconnect', function() {
