@@ -51,7 +51,7 @@ function setLedBrightness(rpio, value){
 }
 var app = express();
 var httpServer = http.createServer(app);
-var io = require("socket.io").listen(httpServer);
+var io = require("socket.io")(httpServer);
 
 app.use(bodyParser.json());
 app.use("/public", express.static(path.join(__dirname, "public")));
